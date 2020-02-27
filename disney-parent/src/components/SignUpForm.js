@@ -1,21 +1,42 @@
 import React from 'react';
+import { withFormik, Form, Field } from 'formik';
 
 function SignUpForm() {
 	return (
-		<form>
+		<Form>
 			<h2>Sign Up</h2>
 			<label>
-				<input></input>
+				<Field type="text" name="username" placeholder="Full name" />
 			</label>
 			<label>
-				<input></input>
+				<Field type="email" name="email" placeholder="Email" />
 			</label>
 			<label>
-				<input></input>
+				<Field type="password" name="password" placeholder="Password" />
 			</label>
-			<button>Sign Up</button>
-		</form>
+			<Field component="select" name="role">
+				<option>Select your Role</option>
+				<option value="parent">Parent</option>
+				<option value="caregiver">Caregiver</option>
+			</Field>
+			<button type="submit">Sign Up</button>
+		</Form>
 	);
 }
 
-export default SignUpForm;
+const FormikLoginForm = withFormik({
+	mapPropsToValues({ username, email, password, role }) {
+		return {
+			username: username || '',
+			email: email || '',
+			password: password || '',
+			role: role || ''
+		};
+	},
+
+	handleSubmit(values) {
+		console.log(values);
+	}
+})(SignUpForm);
+
+export default FormikLoginForm;

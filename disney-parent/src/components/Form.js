@@ -3,7 +3,7 @@ import { Route, useParams } from 'react-router-dom';
 import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
 
-function Form(props) {
+function Form() {
 	let { id } = useParams();
 	return (
 		<section>
