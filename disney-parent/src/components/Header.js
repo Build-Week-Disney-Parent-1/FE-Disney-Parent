@@ -15,11 +15,10 @@ function Header() {
 	`;
 	const Nav = styled.nav`
 		width: 100%;
-		background: #fff;
+		background: inherit;
 		text-align: center;
 		@media (min-width: 700px) {
 			text-align: left;
-			box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 		}
 	`;
 	const StyledLink = styled(Link)`

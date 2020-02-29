@@ -5,13 +5,13 @@ import axios from 'axios';
 import BgImage from '../assets/disney.png';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import Header from './Header';
 
 const Main = styled.main`
 	width: 100%;
-
 	text-align: center;
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 	@media (min-width: 700px) {
 		flex-direction: row;
 		height: 100vh;
@@ -186,7 +186,8 @@ const SubmitButton = styled.button`
 	border-radius: 5px;
 	width: 14.2rem;
 	padding: 1rem;
-	margin-top: 6rem;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
 	transition: all 0.4s ease-in-out;
 	&:hover {
 		cursor: pointer;
@@ -198,6 +199,11 @@ const SubmitButton = styled.button`
 	}
 `;
 
+const ErrorMessage = styled.p`
+	font-size: 1rem;
+	color: gray;
+`;
+
 function SignUpPage({ errors, touched, status }) {
 	const [user, setUser] = useState([]);
 	useEffect(() => {
@@ -206,6 +212,7 @@ function SignUpPage({ errors, touched, status }) {
 
 	return (
 		<Main>
+			<Header />
 			<Div>
 				<H2>Create an Account</H2>
 				<FormWrapper>
@@ -213,19 +220,25 @@ function SignUpPage({ errors, touched, status }) {
 						First and Last Name
 						<br />
 						<Input type="text" name="username" placeholder="Sally Seashell" />
-						{touched.username && errors.username && <p>{errors.username}</p>}
+						{touched.username && errors.username && (
+							<ErrorMessage>{errors.username}</ErrorMessage>
+						)}
 					</Label>
 					<Label>
 						Email
 						<br />
 						<Input type="email" name="email" placeholder="example@example.com" />
-						{touched.email && errors.email && <p>{errors.email}</p>}
+						{touched.email && errors.email && (
+							<ErrorMessage>{errors.email}</ErrorMessage>
+						)}
 					</Label>
 					<Label>
 						Password
 						<br />
 						<Input type="password" name="password" placeholder="********" />
-						{touched.password && errors.password && <p>{errors.password}</p>}
+						{touched.password && errors.password && (
+							<ErrorMessage>{errors.password}</ErrorMessage>
+						)}
 					</Label>
 					<Label>
 						Parent or Volunteer
@@ -235,7 +248,9 @@ function SignUpPage({ errors, touched, status }) {
 							<option value="parent">Parent</option>
 							<option value="volunteer">Volunteer</option>
 						</Select>
-						{touched.role && errors.role && <p>{errors.role}</p>}
+						{touched.role && errors.role && (
+							<ErrorMessage>{errors.role}</ErrorMessage>
+						)}
 					</Label>
 					<SubmitButton type="submit">Let's Go!</SubmitButton>
 				</FormWrapper>
@@ -267,7 +282,7 @@ const FormikLoginForm = withFormik({
 			.required('Email address is required.'),
 		password: Yup.string()
 			.min(6)
-			.required('Password of at least 6 characters is required.'),
+			.required('Password must be at least 6 characters long.'),
 		role: Yup.string()
 			.ensure()
 			.required('Role selection is required')

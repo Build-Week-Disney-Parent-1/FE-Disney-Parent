@@ -5,6 +5,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import BgImage from '../assets/disney.png';
 import { NavLink } from 'react-router-dom';
+import Header from './Header';
 
 const Main = styled.main`
 	width: 100%;
@@ -199,6 +200,11 @@ const SubmitButton = styled.button`
 	}
 `;
 
+const ErrorMessage = styled.p`
+	font-size: 1rem;
+	color: gray;
+`;
+
 function SignInPage({ errors, touched, status }) {
 	const [userLogin, setUserLogin] = useState([]);
 	useEffect(() => {
@@ -207,6 +213,7 @@ function SignInPage({ errors, touched, status }) {
 
 	return (
 		<Main>
+			<Header />
 			<Wrapper>
 				<H2>Join the Magic!</H2>
 				<P>
@@ -222,13 +229,17 @@ function SignInPage({ errors, touched, status }) {
 						Email
 						<br />
 						<Input type="email" name="email" placeholder="example@example.com" />
-						{touched.email && errors.email && <p>{errors.email}</p>}
+						{touched.email && errors.email && (
+							<ErrorMessage>{errors.email}</ErrorMessage>
+						)}
 					</Label>
 					<Label>
 						Password
 						<br />
 						<Input type="password" name="password" placeholder="********" />
-						{touched.password && errors.password && <p>{errors.password}</p>}
+						{touched.password && errors.password && (
+							<ErrorMessage>{errors.password}</ErrorMessage>
+						)}
 					</Label>
 					<Label>
 						Parent or Volunteer
@@ -238,7 +249,9 @@ function SignInPage({ errors, touched, status }) {
 							<option value="parant">Parent</option>
 							<option value="volunteer">Volunteer</option>
 						</Select>
-						{touched.role && errors.role && <p>{errors.role}</p>}
+						{touched.role && errors.role && (
+							<ErrorMessage>{errors.role}</ErrorMessage>
+						)}
 					</Label>
 					<SubmitButton type="submit">Let's Go! </SubmitButton>
 				</FormWrapper>
