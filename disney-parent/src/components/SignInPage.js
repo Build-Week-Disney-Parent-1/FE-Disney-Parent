@@ -1,11 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import BgImage from '../assets/disney.png';
 import { NavLink } from 'react-router-dom';
 import Header from './Header';
+
+const inputStyles = css`
+	width: 20rem;
+	background: #ffffff;
+	border: 1px solid #2f2f2f;
+	border-radius: 5px;
+	font-family: Gentium Basic;
+	margin-top: 0.8rem;
+	font-size: 1.2rem;
+	padding: 1rem;
+	font-weight: bold;
+	color: #918383;
+`;
 
 const Main = styled.main`
 	width: 100%;
@@ -129,50 +142,14 @@ const Label = styled.label`
 `;
 
 const Input = styled(Field)`
-	background: #ffffff;
-	border: 1px solid #2f2f2f;
-	border-radius: 5px;
-	width: 20rem;
-	padding: 1rem;
-	margin-top: 0.8rem;
-	color: #918383;
-	&::-webkit-input-placeholder {
-		font-family: Gentium Basic;
-		font-style: normal;
-		font-weight: bold;
-		font-size: 12px;
-		line-height: 14px;
-	}
-	&:-moz-placeholder {
-		font-family: Gentium Basic;
-		font-style: normal;
-		font-weight: bold;
-		font-size: 12px;
-		line-height: 14px;
-	}
-	&::placeholder {
-		font-family: Gentium Basic;
-		font-style: normal;
-		font-weight: bold;
-		font-size: 12px;
-		line-height: 14px;
-	}
+	${inputStyles}
 	@media (min-width: 700px) {
 		width: 37rem;
 	}
 `;
 
 const Select = styled(Field)`
-	width: 20rem;
-	background: #ffffff;
-	border: 1px solid #2f2f2f;
-	border-radius: 5px;
-	font-family: Gentium Basic;
-	margin-top: 0.8rem;
-	font-size: 1.2rem;
-	padding: 1rem;
-	font-weight: bold;
-	color: #918383;
+	${inputStyles}
 	-webkit-appearance: none;
 	@media (min-width: 700px) {
 		width: 37rem;
@@ -205,8 +182,8 @@ const ErrorMessage = styled.p`
 	color: gray;
 `;
 
-function SignInPage({ errors, touched, status }) {
-	const [userLogin, setUserLogin] = useState([]);
+function SignInPage({ errors, touched, status, setUserLogin, userLogin }) {
+	// const [userLogin, setUserLogin] = useState([]);
 	useEffect(() => {
 		status && setUserLogin([...userLogin, status]);
 	}, [status]);
@@ -246,7 +223,7 @@ function SignInPage({ errors, touched, status }) {
 						<br />
 						<Select component="select" name="role">
 							<option>Select your Role</option>
-							<option value="parant">Parent</option>
+							<option value="parent">Parent</option>
 							<option value="volunteer">Volunteer</option>
 						</Select>
 						{touched.role && errors.role && (
@@ -286,12 +263,13 @@ const FormikLoginForm = withFormik({
 	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors }) => {
 		console.log('values', values);
 		axios
-			.post('https://reqres.in/api/users', values)
+			.post('https://disney-parent-api.herokuapp.com/api/auth/login', values)
 			.then(res => {
 				console.log('res.data', res.data);
 				resetForm();
 				setStatus(res.data);
 				setSubmitting(false);
+				alert(res.data.message);
 			})
 			.catch(err => {
 				console.log(err);
