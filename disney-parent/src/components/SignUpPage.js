@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -46,6 +46,7 @@ const Wrapper = styled.section`
 		background-position: center bottom;
 		background-size: 282px;
 		width: 40%;
+		margin-top: -17rem;
 	}
 	@media (min-width: 1000px) {
 		background-size: 380px;
@@ -181,8 +182,8 @@ const ErrorMessage = styled.p`
 	color: gray;
 `;
 
-function SignUpPage({ errors, touched, status, setUser, user }) {
-	// const [user, setUser] = useState([]);
+function SignUpPage({ errors, touched, status }) {
+	const [user, setUser] = useState([]);
 	useEffect(() => {
 		status && setUser([...user, status]);
 	}, [status]);

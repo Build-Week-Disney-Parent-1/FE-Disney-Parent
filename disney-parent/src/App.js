@@ -3,13 +3,12 @@ import './App.css';
 // import Header from './components/Header';
 import SignInPage from './components/SignInPage';
 import SignUpPage from './components/SignUpPage';
-import LoggedIn from './components/LoggedIn';
+import WelcomePage from './components/WelcomePage';
 import { Route, Redirect } from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
 
 function App() {
 	const [userLogin, setUserLogin] = useState([]);
-	const [user, setUser] = useState([]);
 
 	return (
 		<div className="App">
@@ -28,14 +27,11 @@ function App() {
 						)
 					}
 				/>
-				<Route
-					path="/:id"
-					render={() => <SignUpPage user={user} setUser={setUser} />}
-				/>
+				<Route path="/:id" render={() => <SignUpPage />} />
 				<Route
 					path="/loggedin"
 					exact
-					render={() => <LoggedIn userLogin={userLogin} user={user} />}
+					render={() => <WelcomePage userLogin={userLogin} />}
 				/>
 			</SwipeableRoutes>
 		</div>

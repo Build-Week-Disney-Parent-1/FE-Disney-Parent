@@ -165,7 +165,7 @@ const SubmitButton = styled.button`
 	border-radius: 5px;
 	width: 14.2rem;
 	padding: 1rem;
-	margin-top: 6rem;
+	margin-top: 3rem;
 	transition: all 0.4s ease-in-out;
 	&:hover {
 		cursor: pointer;
@@ -219,7 +219,7 @@ function SignInPage({ errors, touched, status, setUserLogin, userLogin }) {
 						)}
 					</Label>
 					<Label>
-						Parent or Volunteer
+						* Parent or Volunteer
 						<br />
 						<Select component="select" name="role">
 							<option>Select your Role</option>
@@ -257,7 +257,7 @@ const FormikLoginForm = withFormik({
 			.required('Please enter your password.'),
 		role: Yup.string()
 			.ensure()
-			.required('Please select your role.')
+			.required('* Please select your role.')
 	}),
 
 	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors }) => {

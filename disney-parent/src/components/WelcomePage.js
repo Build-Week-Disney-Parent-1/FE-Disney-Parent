@@ -18,7 +18,7 @@ const P = styled.p`
 	margin-top: 5%;
 `;
 
-function WelcomePage(props) {
+function LoggedIn(props) {
 	let welcome = props.userLogin[0] ? props.userLogin[0].message : null;
 	console.log(welcome);
 	// const [data, setData] = useState([]); <= to set data from user API
@@ -41,4 +41,4 @@ function WelcomePage(props) {
 	);
 }
 
-export default WelcomePage;
+export default LoggedIn;
