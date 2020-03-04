@@ -1,80 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
-import { withFormik, Form, Field } from 'formik';
-
-const Content = styled.section`
-	display: flex;
-	color: #2f2f2f;
-	background: #eee;
-	width: 90%;
-	margin: 3rem auto;
-`;
-
-const inputStyles = css`
-	width: 100%;
-	background: #ffffff;
-	border: 1px solid #2f2f2f;
-	border-radius: 5px;
-	font-family: Gentium Basic;
-	margin-top: 0.8rem;
-	font-size: 1.2rem;
-	padding: 1rem;
-	font-weight: bold;
-	color: #918383;
-`;
-
-const FormWrapper = styled(Form)`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	margin: 0 auto;
-	width: 70%;
-	padding: 2rem;
-`;
-
-const Label = styled.label`
-	font-family: Gentium Basic;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 1.4rem;
-	line-height: 16px;
-	color: #2f2f2f;
-	padding-bottom: 1.5rem;
-	text-align: left;
-`;
-
-const Input = styled(Field)`
-	${inputStyles}
-`;
-
-const Select = styled(Field)`
-	${inputStyles}
-	-webkit-appearance: none;
-`;
-
-const SubmitButton = styled.button`
-	font-family: Gentium Basic;
-	font-style: normal;
-	background: #fff;
-	border: 1px solid #2f2f2f;
-	box-sizing: border-box;
-	border-radius: 5px;
-	width: 20%;
-	padding: 1rem;
-	margin-bottom: -0.4rem;
-	margin-right: 0;
-	font-weight: bold;
-	transition: all 0.4s ease-in-out;
-	&:hover {
-		cursor: pointer;
-		transform: scale(1.05);
-	}
-
-	&:focus {
-		outline: none;
-	}
-`;
+import React, { useEffect } from 'react';
+import { withFormik } from 'formik';
+import {
+	RequestFormWrapper,
+	RequestFormElement,
+	Label,
+	Input,
+	Select,
+	PostButton
+} from './styles';
 
 function RequestForm({ status, request, setRequest }) {
 	useEffect(() => {
@@ -82,8 +15,8 @@ function RequestForm({ status, request, setRequest }) {
 	}, [status]);
 
 	return (
-		<Content>
-			<FormWrapper>
+		<RequestFormWrapper>
+			<RequestFormElement>
 				<Label style={{ width: '65%' }}>
 					Request
 					<br />
@@ -91,12 +24,13 @@ function RequestForm({ status, request, setRequest }) {
 						type="text"
 						name="request"
 						placeholder="Anyone around to swap with me?"
+						style={{ width: '100%' }}
 					/>
 				</Label>
 				<Label style={{ width: '15%' }}>
 					Time
 					<br />
-					<Select component="select" name="time">
+					<Select component="select" name="time" style={{ width: '100%' }}>
 						<option>Select One</option>
 						<option value="9:00 A.M.">9:00 A.M.</option>
 						<option value="9:30 A.M.">9:30 A.M.</option>
@@ -122,7 +56,7 @@ function RequestForm({ status, request, setRequest }) {
 				<Label style={{ width: '15%' }}>
 					Children
 					<br />
-					<Select component="select" name="children">
+					<Select component="select" name="children" style={{ width: '100%' }}>
 						<option>Select One</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -134,7 +68,7 @@ function RequestForm({ status, request, setRequest }) {
 				<Label style={{ width: '65%' }}>
 					Ride
 					<br />
-					<Select component="select" name="ride">
+					<Select component="select" name="ride" style={{ width: '100%' }}>
 						<option>Select One</option>
 						<option value="Soarin’ around the World">Soarin’ around the World</option>
 						<option value="Avatar Flight of Passage">Avatar Flight of Passage</option>
@@ -148,7 +82,7 @@ function RequestForm({ status, request, setRequest }) {
 				<Label style={{ width: '30%' }}>
 					Meeting Location
 					<br />
-					<Select component="select" name="location">
+					<Select component="select" name="location" style={{ width: '100%' }}>
 						<option>Select One</option>
 						<option value="Tomorrowland">Tomorrowland</option>
 					</Select>
@@ -161,11 +95,12 @@ function RequestForm({ status, request, setRequest }) {
 						name="message"
 						component="textarea"
 						placeholder="Anyone around to swap with me?"
+						style={{ width: '100%' }}
 					/>
 				</Label>
-				<SubmitButton type="submit">Post</SubmitButton>
-			</FormWrapper>
-		</Content>
+				<PostButton type="submit">Post</PostButton>
+			</RequestFormElement>
+		</RequestFormWrapper>
 	);
 }
 
