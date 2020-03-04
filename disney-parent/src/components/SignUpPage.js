@@ -182,8 +182,7 @@ const ErrorMessage = styled.p`
 	color: gray;
 `;
 
-function SignUpPage({ errors, touched, status }) {
-	const [user, setUser] = useState([]);
+function SignUpPage({ errors, touched, status, user, setUser }) {
 	useEffect(() => {
 		status && setUser([...user, status]);
 	}, [status]);
@@ -266,21 +265,18 @@ const FormikLoginForm = withFormik({
 			.required('Role selection is required')
 	}),
 
-	handleSubmit: (
-		values,
-		{ resetForm, setStatus, setSubmitting, setErrors, readNow }
-	) => {
+	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors }) => {
 		console.log('values', values);
 		axios
 			.post('https://disney-parent-api.herokuapp.com/api/auth/register', values)
 			.then(res => {
-				console.log('res.data', res.data); // Data was created successfully and logs to console
+				console.log('res.data', res.data);
 				resetForm();
 				setStatus(res.data);
 				setSubmitting(false);
 			})
 			.catch(err => {
-				console.log(err); // There was an error creating the data and logs to console
+				console.log(err);
 				setErrors(err);
 				setSubmitting(false);
 			});

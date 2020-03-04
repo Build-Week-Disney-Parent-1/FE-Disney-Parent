@@ -1,44 +1,40 @@
-import React, { useEffect } from 'react';
-import Header from './Header';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { withFormik, Form, Field } from 'formik';
+import RequestCard from './RequestCard';
+import SearchForm from './SearchForm';
+import RequestForm from './RequestForm';
 
-const Wrapper = styled.main`
+const Main = styled.main`
 	width: 100%;
 	font-size: 1.5rem;
 `;
 
-const Content = styled.section`
+const Requests = styled.section`
 	display: flex;
-	justify-content: flex-end;
 	color: #2f2f2f;
-`;
-const P = styled.p`
-	padding: 2rem;
-	margin-top: 5%;
+	width: 90%;
+	margin: 3rem auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 `;
 
-function LoggedIn(props) {
-	let welcome = props.userLogin[0] ? props.userLogin[0].message : null;
-	console.log(welcome);
-	// const [data, setData] = useState([]); <= to set data from user API
-	useEffect(() => {
-		axios
-			.get('https://disney-parent-api.herokuapp.com/api/users')
-			.then(response => {
-				console.log(response.data);
-			})
-			.catch(err => console.log(err));
-	}, [props.userLogin]);
+function WelcomePage() {
+	const [request, setRequest] = useState([]);
+	const [searchResult, setSearchResult] = useState([]);
+
 	return (
-		<Wrapper>
-			<Header />
-			<Content>
-				<P>{welcome}</P>
-				<P>Logout</P>
-			</Content>
-		</Wrapper>
+		<Main>
+			<SearchForm searchResult={searchResult} setSearchResult={setSearchResult} />
+			<RequestForm request={request} setRequest={setRequest} />
+			<Requests>
+				{request.map(item => {
+					return <RequestCard item={item} />;
+				})}
+			</Requests>
+		</Main>
 	);
 }
 
-export default LoggedIn;
+export default WelcomePage;

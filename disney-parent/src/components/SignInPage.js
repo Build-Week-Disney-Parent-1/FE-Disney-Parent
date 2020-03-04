@@ -183,7 +183,6 @@ const ErrorMessage = styled.p`
 `;
 
 function SignInPage({ errors, touched, status, setUserLogin, userLogin }) {
-	// const [userLogin, setUserLogin] = useState([]);
 	useEffect(() => {
 		status && setUserLogin([...userLogin, status]);
 	}, [status]);
@@ -269,7 +268,6 @@ const FormikLoginForm = withFormik({
 				resetForm();
 				setStatus(res.data);
 				setSubmitting(false);
-				alert(res.data.message);
 			})
 			.catch(err => {
 				console.log(err);
