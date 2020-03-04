@@ -262,7 +262,7 @@ const FormikLoginForm = withFormik({
 			.required('Password must be at least 6 characters long.'),
 		role: Yup.string()
 			.ensure()
-			.required('Role selection is required')
+			.required('Role selection is required.')
 	}),
 
 	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors }) => {

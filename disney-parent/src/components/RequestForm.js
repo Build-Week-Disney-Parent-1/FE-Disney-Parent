@@ -163,7 +163,7 @@ function RequestForm({ status, request, setRequest }) {
 						placeholder="Anyone around to swap with me?"
 					/>
 				</Label>
-				<SubmitButton type="submit">Let's Go!</SubmitButton>
+				<SubmitButton type="submit">Post</SubmitButton>
 			</FormWrapper>
 		</Content>
 	);
