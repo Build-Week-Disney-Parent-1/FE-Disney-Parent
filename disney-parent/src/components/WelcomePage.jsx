@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RequestCard from './RequestCard';
 import SearchForm from './SearchForm';
 import RequestForm from './RequestForm';
-
+// styles
 import {
 	WelcomePageWrapper,
 	WelcomePageNav,
@@ -10,11 +10,20 @@ import {
 	SignOutButton,
 	RequestCardsWrapper
 } from './styles';
+// dummy data
+import { requests } from '../data/requests'
 
 function WelcomePage() {
 	const [request, setRequest] = useState([]);
 	const [searchResult, setSearchResult] = useState([]);
+	
+	useEffect(() => {
+		
+		// populate state with some dummy data on inital render
+		setRequest(requests)
+	}, [])
 
+	
 	return (
 		<WelcomePageWrapper>
 			<header>

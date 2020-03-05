@@ -18,16 +18,22 @@ function App() {
 					exact
 					path="/"
 					render={() =>
-						userLogin.length > 0 ? (
+						localStorage.getItem("user") !== null ? (
 							<Redirect to="/loggedin" />
 						) : (
-							<SignInPage userLogin={userLogin} setUserLogin={setUserLogin} />
+							<Redirect to="/login" />
 						)
 					}
 				/>
+				<Route 
+					exact
+					path="/login"
+					render={(routeProps) => <SignInPage userLogin={userLogin} setUserLogin={setUserLogin} {...routeProps}/>}
+				/>
 				<Route
-					path="/:id"
-					render={() => <SignUpPage user={user} setUser={setUser} />}
+					exact
+					path="/signup"
+					render={(routeProps) => <SignUpPage user={user} setUser={setUser} {...routeProps}/>}
 				/>
 				<Route
 					path="/loggedin"
