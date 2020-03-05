@@ -98,21 +98,22 @@ const FormikLoginForm = withFormik({
 	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors, props }) => {
 		console.log('values', values);
 		const { history } = props
+		history.push('/loggedin')
 
-		axios
-			.post('https://disney-parent-api.herokuapp.com/api/auth/login', values)
-			.then(res => {
-				console.log('res.data', res.data);
-				resetForm();
-				setStatus(res.data);
-				setSubmitting(false);
-				history.push('/loggedin')
-			})
-			.catch(err => {
-				console.log(err);
-				setErrors(err);
-				setSubmitting(false);
-			});
+		// axios
+		// 	.post('https://disney-parent-api.herokuapp.com/api/auth/login', values)
+		// 	.then(res => {
+		// 		console.log('res.data', res.data);
+		// 		resetForm();
+		// 		setStatus(res.data);
+		// 		setSubmitting(false);
+		// 		history.push('/loggedin')
+		// 	})
+		// 	.catch(err => {
+		// 		console.log(err);
+		// 		setErrors(err);
+		// 		setSubmitting(false);
+		// 	});
 	}
 })(SignInPage);
 
