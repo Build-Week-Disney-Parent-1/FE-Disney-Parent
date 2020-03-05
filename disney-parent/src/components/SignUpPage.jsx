@@ -5,7 +5,7 @@ import axios from 'axios';
 import BgImage from '../assets/disney.png';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import Header from './Header';
+import Header from './Header/Header';
 
 const inputStyles = css`
 	width: 20rem;

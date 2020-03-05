@@ -1,8 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-const HeaderElement = styled.header`
+
+export const HeaderElement = styled.header`
 	font-family: Gentium Basic;
 	font-style: italic;
 	font-weight: bold;
@@ -12,7 +12,8 @@ const HeaderElement = styled.header`
 		position: fixed;
 	}
 `;
-const Nav = styled.nav`
+
+export const Nav = styled.nav`
 	width: 100%;
 	background: inherit;
 	text-align: center;
@@ -20,7 +21,8 @@ const Nav = styled.nav`
 		text-align: left;
 	}
 `;
-const StyledLink = styled(Link)`
+
+export const StyledLink = styled(Link)`
 	display: inline-block;
 	font-style: italic;
 	font-weight: bold;
@@ -33,15 +35,3 @@ const StyledLink = styled(Link)`
 		padding: 1.5rem 2.5rem;
 	}
 `;
-
-function Header() {
-	return (
-		<HeaderElement>
-			<Nav>
-				<StyledLink to="/">Disney Parent</StyledLink>
-			</Nav>
-		</HeaderElement>
-	);
-}
-
-export default Header;
