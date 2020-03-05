@@ -9,9 +9,7 @@ html {
 html,
 body {
 	height: 100%;
-
 	font-family: ' Gentium Basic';
-	/* overflow-y: hidden; */
 }
 
 .App {
