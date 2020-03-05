@@ -12,6 +12,7 @@ export const requests = [
     "ride": "Avatar Flight of Passage",
     "location": "Tomorrowland",
     "message": "asdfas",
+    "isAccepted": true
   },
   {
     "request": "Anyone around that can swap with us??",
@@ -20,6 +21,7 @@ export const requests = [
     "ride": "Test Track",
     "location": "Tomorrowland",
     "message": "asdfas",
+    "isAccepted": false
   },
   {
     "request": "Anyone around that can swap with us??",
@@ -28,6 +30,7 @@ export const requests = [
     "ride": "Splash Mountain",
     "location": "Tomorrowland",
     "message": "asdfas",
+    "isAccepted": false
   },
 
 ]

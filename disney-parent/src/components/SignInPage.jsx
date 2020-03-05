@@ -97,22 +97,34 @@ const FormikLoginForm = withFormik({
 
 	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors, props }) => {
 		console.log('values', values);
-		const { history } = props
 
-		axios
-			.post('https://disney-parent-api.herokuapp.com/api/auth/login', values)
-			.then(res => {
-				console.log('res.data', res.data);
-				resetForm();
-				setStatus(res.data);
-				setSubmitting(false);
-				history.push('/loggedin')
-			})
-			.catch(err => {
-				console.log(err);
-				setErrors(err);
-				setSubmitting(false);
-			});
+		// bring in route history method
+		const { history, setUserLogin } = props
+		// create a user object to be set to local storage
+		const user = { ...values }
+		delete user.password
+		// set localstoreage to the user object
+		localStorage.setItem("user", JSON.stringify(user))
+		// push the user to desired route
+		history.push('/loggedin')
+		// update state for re-render
+		setUserLogin(localStorage.getItem("user"))
+	
+
+		// axios
+		// 	.post('https://disney-parent-api.herokuapp.com/api/auth/login', values)
+		// 	.then(res => {
+		// 		console.log('res.data', res.data);
+		// 		resetForm();
+		// 		setStatus(res.data);
+		// 		setSubmitting(false);
+		// 		history.push('/loggedin')
+		// 	})
+		// 	.catch(err => {
+		// 		console.log(err);
+		// 		setErrors(err);
+		// 		setSubmitting(false);
+		// 	});
 	}
 })(SignInPage);
 
