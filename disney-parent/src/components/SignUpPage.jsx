@@ -103,30 +103,34 @@ const FormikLoginForm = withFormik({
 	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors, props}) => {
 		console.log('values', values);
 		// history prop from react router
-		const { history } = props
+		const { history, setUserLogin } = props
+
 		// Spread in the user data from the form and also delete the password field off the object
 		const user = { ...values }
 		delete user.password
-		
-		axios
-			.post('https://disney-parent-api.herokuapp.com/api/auth/register', values)
-			.then(res => {
-				console.log('res.data', res.data);
-				resetForm();
-				setStatus(res.data);
-				setSubmitting(false);
-				// add a property to the user object upon successful request
-				user.isLoggedIn = true
-				// set local storage for a dummy user, this is the state from the form
-				localStorage.setItem("user", JSON.stringify(user))
-				// push the user to the main app view
-				history.push('/loggedin')
-			})
-			.catch(err => {
-				console.log(err);
-				setErrors(err);
-				setSubmitting(false);
-			});
+
+		localStorage.setItem("user", JSON.stringify(user))
+		history.push('/loggedin')
+		setUserLogin(localStorage.getItem("user"))
+		// axios
+		// 	.post('https://disney-parent-api.herokuapp.com/api/auth/register', values)
+		// 	.then(res => {
+		// 		console.log('res.data', res.data);
+		// 		resetForm();
+		// 		setStatus(res.data);
+		// 		setSubmitting(false);
+		// 		// add a property to the user object upon successful request
+		// 		user.isLoggedIn = true
+		// 		// set local storage for a dummy user, this is the state from the form
+		// 		localStorage.setItem("user", JSON.stringify(user))
+		// 		// push the user to the main app view
+		// 		history.push('/loggedin')
+		// 	})
+		// 	.catch(err => {
+		// 		console.log(err);
+		// 		setErrors(err);
+		// 		setSubmitting(false);
+		// 	});
 	}
 })(SignUpPage);
 
