@@ -15,8 +15,8 @@ import {
 function RequestCard(props) {
 
 	const [accepted, setAccepted] = useState(props.item.isAccepted)
-	
-	// toggle state from false to true
+	console.log(props)
+	// toggle state from false to true using reverse logic
 	// if a button is disabled / state is true, this will not run
 	function handleAccepted(){
 		setAccepted(!accepted)

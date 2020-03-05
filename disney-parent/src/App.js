@@ -35,12 +35,12 @@ function App() {
 					path="/signup"
 					render={(routeProps) => <SignUpPage user={user} setUser={setUser} {...routeProps}/>}
 				/>
-				<Route
+			</SwipeableRoutes>
+			<Route
 					exact
 					path="/loggedin"
 					render={() => <WelcomePage userLogin={userLogin} />}
 				/>
-			</SwipeableRoutes>
 		</div>
 	);
 }
