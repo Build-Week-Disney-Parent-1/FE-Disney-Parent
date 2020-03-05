@@ -110,6 +110,8 @@ const FormikLoginForm = withFormik({
 				resetForm();
 				setStatus(res.data);
 				setSubmitting(false);
+				// set local storage for a dummy user based on state data
+				
 			})
 			.catch(err => {
 				console.log(err);
