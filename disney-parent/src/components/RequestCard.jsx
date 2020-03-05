@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
 	Card,
 	CardIconsContainer,
@@ -6,15 +8,20 @@ import {
 	CardContent,
 	CardItem,
 	Span,
-	AcceptButton
+	AcceptButton,
+	Icon
 } from './styles';
 
 function RequestCard(props) {
 	return (
 		<Card>
 			<CardIconsContainer>
-				<CardIcons>X</CardIcons>
-				<CardIcons>Edit</CardIcons>
+				<CardIcons>
+					<Icon icon={faTrash} />
+				</CardIcons>
+				<CardIcons>
+					<Icon icon={faEdit} />
+				</CardIcons>
 			</CardIconsContainer>
 			<CardContent>
 				<CardItem>

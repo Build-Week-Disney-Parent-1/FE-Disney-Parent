@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
 import { Form, Field } from 'formik';
 import BgImage from '../assets/disney.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Header
 
@@ -9,12 +10,14 @@ export const HeaderElement = styled.header`
 	font-family: Gentium Basic;
 	font-style: italic;
 	font-weight: bold;
+	background: #04b7ff;
 	width: 100%;
 	height: 5%;
 	@media (min-width: 700px) {
 		position: fixed;
 	}
 `;
+
 export const Nav = styled.nav`
 	width: 100%;
 	background: inherit;
@@ -23,6 +26,7 @@ export const Nav = styled.nav`
 		text-align: left;
 	}
 `;
+
 export const StyledLink = styled(Link)`
 	display: inline-block;
 	font-style: italic;
@@ -64,7 +68,7 @@ export const Main = styled.main`
 `;
 
 export const Wrapper = styled.section`
-	background: #eeeeee;
+	background: #e1f6fe;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -245,7 +249,7 @@ export const SignOutButton = styled.button`
 	border-radius: 5px;
 	padding: 0.6rem 2rem;
 	font-style: normal;
-	font-weight: normal;
+	font-weight: 600;
 	cursor: pointer;
 	transition: all 0.4s ease-in-out;
 	&:hover {
@@ -274,7 +278,7 @@ export const Card = styled.div`
 	height: 25rem;
 	max-width: 120rem;
 	justify-content: center;
-	background: #eee;
+	background: #e1f6fe;
 	border-radius: 5px;
 	margin-bottom: 2%;
 `;
@@ -296,34 +300,33 @@ export const CardContent = styled.ul`
 	flex-direction: column;
 	justify-content: center;
 `;
+
 export const CardItem = styled.li`
 	font-size: 1.5rem;
 	padding-top: 0.4rem;
 	&:first-child {
 		font-size: 2rem;
 		padding: 1rem 0;
+		font-weight: normal;
 	}
 `;
 export const Span = styled.span`
 	font-weight: bold;
 `;
 
+export const Icon = styled(FontAwesomeIcon)`
+	color: #04b7ff;
+`;
+
 export const AcceptButton = styled.button`
-	width: 18%;
+	width: 8rem;
 	text-align: rigth;
 	margin-left: auto;
-	margin-right: 1rem;
 	border: 1px solid #2f2f2f;
 	border-radius: 5px;
 	background: #fff;
 	padding: 1rem;
 	font-size: 1.1rem;
-	font-weight: bold;
-	transition: all 0.4s ease-in-out;
-	&:hover {
-		cursor: pointer;
-		transform: scale(1.05);
-	}
 `;
 
 // SearchForm and RequestForm
