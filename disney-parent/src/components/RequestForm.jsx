@@ -1,16 +1,3 @@
-<<<<<<< HEAD:disney-parent/src/components/RequestForm/RequestForm.jsx
-import React, { useEffect, useState } from 'react';
-import { withFormik } from 'formik'
-import { 
-	Content,
-	inputStyles,
-	FormWrapper,
-	Label,
-	Input,
-	Select,
-	SubmitButton
-} from './styles'
-=======
 import React, { useEffect } from 'react';
 import { withFormik } from 'formik';
 import {
@@ -21,7 +8,6 @@ import {
 	Select,
 	PostButton
 } from './styles';
->>>>>>> e833720538505c8290b34ecf669e1b2323c7e159:disney-parent/src/components/RequestForm.jsx
 
 function RequestForm({ status, request, setRequest }) {
 	useEffect(() => {

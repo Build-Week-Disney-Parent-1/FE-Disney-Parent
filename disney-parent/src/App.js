@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
-import SignInPage from './components/SignInPage/SignInPage';
-import SignUpPage from './components/SignUpPage/SignUpPage';
-import WelcomePage from './components/WelcomePage/WelcomePage';
+import SignInPage from './components/SignInPage';
+import SignUpPage from './components/SignUpPage';
+import WelcomePage from './components/WelcomePage';
 import { Route, Redirect } from 'react-router-dom';
 import SwipeableRoutes from 'react-swipeable-routes';
 
