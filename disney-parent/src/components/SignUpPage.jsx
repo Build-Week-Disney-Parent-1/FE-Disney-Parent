@@ -108,10 +108,14 @@ const FormikLoginForm = withFormik({
 		// Spread in the user data from the form and also delete the password field off the object
 		const user = { ...values }
 		delete user.password
-
+		
+		// set local storage
 		localStorage.setItem("user", JSON.stringify(user))
+		// push the user to a rout
 		history.push('/loggedin')
+		// update state and get a re-render from it
 		setUserLogin(localStorage.getItem("user"))
+		
 		// axios
 		// 	.post('https://disney-parent-api.herokuapp.com/api/auth/register', values)
 		// 	.then(res => {

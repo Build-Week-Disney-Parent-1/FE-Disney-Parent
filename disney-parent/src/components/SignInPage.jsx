@@ -96,7 +96,6 @@ const FormikLoginForm = withFormik({
 	}),
 
 	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors, props }) => {
-		console.log('values', values);
 
 		// bring in route history method
 		const { history, setUserLogin } = props
