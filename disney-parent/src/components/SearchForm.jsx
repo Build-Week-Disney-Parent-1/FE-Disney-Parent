@@ -1,5 +1,16 @@
 import React, { useEffect } from 'react';
 import { withFormik } from 'formik';
+<<<<<<< HEAD:disney-parent/src/components/SearchForm/SearchForm.jsx
+import {
+	Content,
+	FormWrapper,
+	Label,
+	Input,
+	Select,
+	SubmitButton
+} from './styles'
+
+=======
 
 import {
 	SearchFormWrapper,
@@ -9,6 +20,7 @@ import {
 	Input,
 	Select
 } from './styles';
+>>>>>>> e833720538505c8290b34ecf669e1b2323c7e159:disney-parent/src/components/SearchForm.jsx
 
 function SearchForm({ status, searchResult, setSearchResult }) {
 	useEffect(() => {
