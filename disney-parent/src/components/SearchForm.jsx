@@ -79,7 +79,6 @@ const FormikLoginForm = withFormik({
 	},
 
 	handleSubmit: (values, { setStatus }) => {
-		console.log('values', values);
 		setStatus(values);
 	}
 })(SearchForm);
