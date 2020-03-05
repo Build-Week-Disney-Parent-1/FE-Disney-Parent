@@ -22,7 +22,6 @@ function SignUpPage({ errors, touched, status, user, setUser }) {
 	useEffect(() => {
 		status && setUser([...user, status]);
 	}, [status]);
-
 	return (
 		<Main>
 			<Header />
@@ -71,7 +70,7 @@ function SignUpPage({ errors, touched, status, user, setUser }) {
 			<Wrapper>
 				<H2>Welcome Back!</H2>
 				<Pgh>Use your email to sign back in and check on your parent request!</Pgh>
-				<ActionButton to="/">Sign In</ActionButton>
+				<ActionButton to="/login">Sign In</ActionButton>
 			</Wrapper>
 		</Main>
 	);
@@ -83,7 +82,7 @@ const FormikLoginForm = withFormik({
 			username: username || '',
 			email: email || '',
 			password: password || '',
-			role: role || ''
+			role: role || '',
 		};
 	},
 
@@ -101,8 +100,14 @@ const FormikLoginForm = withFormik({
 			.required('Role selection is required.')
 	}),
 
-	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors }) => {
+	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors, props}) => {
 		console.log('values', values);
+		// history prop from react router
+		const { history } = props
+		// Spread in the user data from the form and also delete the password field off the object
+		const user = { ...values }
+		delete user.password
+		
 		axios
 			.post('https://disney-parent-api.herokuapp.com/api/auth/register', values)
 			.then(res => {
@@ -110,8 +115,12 @@ const FormikLoginForm = withFormik({
 				resetForm();
 				setStatus(res.data);
 				setSubmitting(false);
-				// set local storage for a dummy user based on state data
-				
+				// add a property to the user object upon successful request
+				user.isLoggedIn = true
+				// set local storage for a dummy user, this is the state from the form
+				localStorage.setItem("user", JSON.stringify(user))
+				// push the user to the main app view
+				history.push('/loggedin')
 			})
 			.catch(err => {
 				console.log(err);

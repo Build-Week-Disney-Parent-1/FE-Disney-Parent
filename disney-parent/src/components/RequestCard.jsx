@@ -13,7 +13,7 @@ import {
 } from './styles';
 
 function RequestCard(props) {
-	console.log("PROPS REQUEST CARD: ", props)
+	
 	return (
 		<Card>
 			<CardIconsContainer>
