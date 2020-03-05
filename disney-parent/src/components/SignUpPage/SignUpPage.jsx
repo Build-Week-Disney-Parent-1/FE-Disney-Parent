@@ -3,7 +3,20 @@ import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import Header from '../Header/Header';
-
+import {
+	Main,
+	Wrapper,
+	H2,
+	P,
+	StyledLink,
+	Div,
+	FormWrapper,
+	Label,
+	Input,
+	Select,
+	SubmitButton,
+	ErrorMessage
+} from './styles'
 
 
 function SignUpPage({ errors, touched, status, user, setUser }) {

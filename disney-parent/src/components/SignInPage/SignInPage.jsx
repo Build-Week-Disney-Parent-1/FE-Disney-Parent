@@ -13,6 +13,7 @@ import {
 	Label,
 	Input,
 	Select,
+	FormWrapper,
 	SubmitButton,
 	ErrorMessage
 } from './styles'

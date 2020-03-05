@@ -1,4 +1,4 @@
-import BgImage from '../assets/disney.png';
+import BgImage from '../../assets/disney.png';
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { Form, Field } from 'formik';
