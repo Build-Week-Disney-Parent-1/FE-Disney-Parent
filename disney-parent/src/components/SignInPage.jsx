@@ -95,8 +95,10 @@ const FormikLoginForm = withFormik({
 			.required('* Please select your role.')
 	}),
 
-	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors }) => {
+	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors, props }) => {
 		console.log('values', values);
+		const { history } = props
+
 		axios
 			.post('https://disney-parent-api.herokuapp.com/api/auth/login', values)
 			.then(res => {
@@ -104,6 +106,7 @@ const FormikLoginForm = withFormik({
 				resetForm();
 				setStatus(res.data);
 				setSubmitting(false);
+				history.push('/loggedin')
 			})
 			.catch(err => {
 				console.log(err);

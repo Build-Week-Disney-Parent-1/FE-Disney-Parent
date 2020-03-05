@@ -28,7 +28,7 @@ function App() {
 				<Route 
 					exact
 					path="/login"
-					render={() => <SignInPage userLogin={userLogin} setUserLogin={setUserLogin} />}
+					render={(routeProps) => <SignInPage userLogin={userLogin} setUserLogin={setUserLogin} {...routeProps}/>}
 				/>
 				<Route
 					exact
