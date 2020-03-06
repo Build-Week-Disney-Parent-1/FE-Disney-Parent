@@ -116,9 +116,10 @@ const FormikLoginForm = withFormik({
 		};
 	},
 
-	handleSubmit: (values, { setStatus }) => {
-		console.log('values', values);
+	handleSubmit: (values, { setStatus, resetForm }) => {
+
 		setStatus(values);
+		resetForm()
 	}
 })(RequestForm);
 

@@ -1,40 +1,39 @@
 import React, { useState } from 'react';
 import './App.css';
-import SignInPage from './components/SignInPage';
-import SignUpPage from './components/SignUpPage';
 import WelcomePage from './components/WelcomePage';
 import { Route, Redirect } from 'react-router-dom';
-import SwipeableRoutes from 'react-swipeable-routes';
+import Auth from './components/Auth'
 
 function App() {
 	//SignInPage and SignUpPage state
+	const [userLogin, setUserLogin] = useState(localStorage.getItem("user"));
 
-	const [userLogin, setUserLogin] = useState([]);
-	const [user, setUser] = useState([]);
 	return (
 		<div className="App">
-			<SwipeableRoutes>
-				<Route
+			<Route
 					exact
 					path="/"
 					render={() =>
-						userLogin.length > 0 ? (
+						localStorage.getItem("user") !== null ? (
 							<Redirect to="/loggedin" />
 						) : (
-							<SignInPage userLogin={userLogin} setUserLogin={setUserLogin} />
+							<Redirect to="/login" />
 						)
 					}
 				/>
-				<Route
-					path="/:id"
-					render={() => <SignUpPage user={user} setUser={setUser} />}
-				/>
-				<Route
-					path="/loggedin"
-					exact
-					render={() => <WelcomePage userLogin={userLogin} />}
-				/>
-			</SwipeableRoutes>
+			
+			{/* Render component ONLY if user is not logged in */}
+			{ userLogin === null && 
+				<Auth setUserLogin={setUserLogin}/>
+			}
+
+			{/* Render ONLY if the user IS logged in */}
+			{ userLogin && 
+				<Route 
+					exact 
+					path="/loggedin" 
+					render={({ history }) => <WelcomePage userLogin={userLogin} setUserLogin={setUserLogin} history={history}/>}/>
+			}
 		</div>
 	);
 }

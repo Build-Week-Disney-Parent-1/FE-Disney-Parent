@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RequestCard from './RequestCard';
 import SearchForm from './SearchForm';
 import RequestForm from './RequestForm';
-
+// styles
 import {
 	WelcomePageWrapper,
 	WelcomePageNav,
@@ -10,10 +10,26 @@ import {
 	SignOutButton,
 	RequestCardsWrapper
 } from './styles';
+// dummy data
+import { requests } from '../data/requests'
 
-function WelcomePage() {
+function WelcomePage({ history, setUserLogin }) {
 	const [request, setRequest] = useState([]);
 	const [searchResult, setSearchResult] = useState([]);
+	
+	useEffect(() => {
+		
+		// populate state with some dummy data on inital render
+		setRequest(requests)
+	}, [])
+
+	function handleSignout(){
+
+		localStorage.removeItem("user")
+		history.push('/')
+		setUserLogin(localStorage.getItem("user"))
+		
+	}
 
 	return (
 		<WelcomePageWrapper>
@@ -23,7 +39,7 @@ function WelcomePage() {
 					<NavItem href="#">About</NavItem>
 					<NavItem href="#">Contact</NavItem>
 					<NavItem href="#"> Our Team</NavItem>
-					<SignOutButton>Sign Out</SignOutButton>
+					<SignOutButton onClick={() => handleSignout()}>Sign Out</SignOutButton>
 				</WelcomePageNav>
 			</header>
 			<main>

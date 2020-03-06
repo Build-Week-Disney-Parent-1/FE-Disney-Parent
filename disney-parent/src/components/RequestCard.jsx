@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -13,6 +13,16 @@ import {
 } from './styles';
 
 function RequestCard(props) {
+
+	const [accepted, setAccepted] = useState(props.item.isAccepted)
+
+	// toggle state from false to true using reverse logic
+	// if a button is disabled / state is true, this will not run
+	function handleAccepted(){
+		setAccepted(!accepted)
+	}
+
+
 	return (
 		<Card>
 			<CardIconsContainer>
@@ -45,7 +55,15 @@ function RequestCard(props) {
 						: `${props.item.children} children`}
 				</CardItem>
 			</CardContent>
-			<AcceptButton>Accept</AcceptButton>
+			<AcceptButton 
+				disabled = {accepted}
+				id = "acceptButton"
+				style={{
+					background: accepted ? "#79D8FE": "#fff", 
+					color: "black"
+				}}
+				onClick={() => handleAccepted()}
+				>Accept</AcceptButton>
 		</Card>
 	);
 }
