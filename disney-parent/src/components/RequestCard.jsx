@@ -15,6 +15,9 @@ import {
 function RequestCard(props) {
 
 	const [accepted, setAccepted] = useState(props.item.isAccepted)
+	
+	// function passed as a prop, to delete a card
+	const { handleDelete } = props
 
 	// toggle state from false to true using reverse logic
 	// if a button is disabled / state is true, this will not run
@@ -27,7 +30,7 @@ function RequestCard(props) {
 		<Card>
 			<CardIconsContainer>
 				<CardIcons>
-					<Icon icon={faTrash} />
+					<Icon icon={faTrash} onClick={() => handleDelete(props.item.id)}/>
 				</CardIcons>
 				<CardIcons>
 					<Icon icon={faEdit} />

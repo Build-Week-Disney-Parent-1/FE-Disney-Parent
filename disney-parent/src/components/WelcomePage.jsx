@@ -16,7 +16,6 @@ import { requests } from '../data/requests'
 function WelcomePage({ history, setUserLogin }) {
 	// state to track a array of requests
 	const [userRequests, setRequests] = useState([])
-
 	// state for searching / filtering
 	const [searchResult, setSearchResult] = useState([]);
 
@@ -31,6 +30,17 @@ function WelcomePage({ history, setUserLogin }) {
 		history.push('/')
 		setUserLogin(localStorage.getItem("user"))
 
+	}
+
+	function handleDelete(id){
+		/*
+		 Filter the array and remove / delete the card 
+		 that has an id that is matching the id passed to
+		 the function
+		*/
+		
+		const filteredRequests = userRequests.filter(card => card.id !== id )
+		setRequests(filteredRequests)
 	}
 
 	return (
@@ -49,7 +59,7 @@ function WelcomePage({ history, setUserLogin }) {
 				<RequestForm  userRequests={userRequests} setRequests={setRequests}/>
 				<RequestCardsWrapper>
 					{userRequests.map(item => {
-						return <RequestCard item={item} key={item.id}/>;
+						return <RequestCard item={item} key={item.id} handleDelete={handleDelete}/>;
 					})}
 				</RequestCardsWrapper>
 			</main>
