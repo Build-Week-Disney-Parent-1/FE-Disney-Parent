@@ -14,21 +14,32 @@ import {
 import { requests } from '../data/requests'
 
 function WelcomePage({ history, setUserLogin }) {
-	const [request, setRequest] = useState([]);
+	// state to track a array of requests
+	const [userRequests, setRequests] = useState([])
+	// state for searching / filtering
 	const [searchResult, setSearchResult] = useState([]);
-	
-	useEffect(() => {
-		
-		// populate state with some dummy data on inital render
-		setRequest(requests)
-	}, [])
 
+	useEffect(() => {
+		// set userRequests on initial render
+		setRequests(requests)
+	},[])
+	
 	function handleSignout(){
 
 		localStorage.removeItem("user")
 		history.push('/')
 		setUserLogin(localStorage.getItem("user"))
+
+	}
+
+	function handleDelete(id){
+		/*
+		 Remove the card that has the same id
+		 as the id that is passed to the function
+		*/
 		
+		const filteredRequests = userRequests.filter(card => card.id !== id )
+		setRequests(filteredRequests)
 	}
 
 	return (
@@ -44,10 +55,10 @@ function WelcomePage({ history, setUserLogin }) {
 			</header>
 			<main>
 				<SearchForm searchResult={searchResult} setSearchResult={setSearchResult} />
-				<RequestForm request={request} setRequest={setRequest} />
+				<RequestForm  userRequests={userRequests} setRequests={setRequests}/>
 				<RequestCardsWrapper>
-					{request.map(item => {
-						return <RequestCard item={item} />;
+					{userRequests.map(item => {
+						return <RequestCard item={item} key={item.id} handleDelete={handleDelete}/>;
 					})}
 				</RequestCardsWrapper>
 			</main>

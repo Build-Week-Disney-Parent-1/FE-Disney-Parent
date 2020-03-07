@@ -3,6 +3,7 @@
 //  "https://i.imgur.com/X3UvJgv.png",
 //  "https://i.imgur.com/mULNDvy.png"
 // ]
+import {v4 as uuidv4 } from 'uuid'
 
 export const requests = [
   {
@@ -12,7 +13,8 @@ export const requests = [
     "ride": "Avatar Flight of Passage",
     "location": "Tomorrowland",
     "message": "asdfas",
-    "isAccepted": true
+    "isAccepted": true,
+    "id": uuidv4()
   },
   {
     "request": "Anyone around that can swap with us??",
@@ -21,7 +23,8 @@ export const requests = [
     "ride": "Test Track",
     "location": "Tomorrowland",
     "message": "asdfas",
-    "isAccepted": false
+    "isAccepted": false,
+    "id": uuidv4()
   },
   {
     "request": "Anyone around that can swap with us??",
@@ -30,7 +33,8 @@ export const requests = [
     "ride": "Splash Mountain",
     "location": "Tomorrowland",
     "message": "asdfas",
-    "isAccepted": false
+    "isAccepted": false,
+    "id": uuidv4()
   },
 
 ]
