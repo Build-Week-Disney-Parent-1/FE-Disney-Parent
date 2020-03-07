@@ -20,8 +20,6 @@ function WelcomePage({ history, setUserLogin }) {
 	// state for searching / filtering
 	const [searchResult, setSearchResult] = useState([]);
 
-	console.log("REQUESTS: ", requests)
-
 	useEffect(() => {
 		// set userRequests on initial render
 		setRequests(requests)
@@ -51,7 +49,7 @@ function WelcomePage({ history, setUserLogin }) {
 				<RequestForm  userRequests={userRequests} setRequests={setRequests}/>
 				<RequestCardsWrapper>
 					{userRequests.map(item => {
-						return <RequestCard item={item} />;
+						return <RequestCard item={item} key={item.id}/>;
 					})}
 				</RequestCardsWrapper>
 			</main>

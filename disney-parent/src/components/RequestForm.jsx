@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { withFormik } from 'formik';
 import axios from 'axios';
+import {v4 as uuid4 } from 'uuid'
 import {
 	RequestFormWrapper,
 	RequestFormElement,
@@ -10,9 +11,7 @@ import {
 	PostButton
 } from './styles';
 
-function RequestForm({ status, request, setRequests, values, userRequests }) {
-	// console.log(values)
-	console.log("STATUS: ", status)
+function RequestForm({ status, request, setRequests, userRequests }) {
 	useEffect(() => {
 		status && setRequests([...userRequests, status]);
 	}, [status]);
@@ -120,13 +119,17 @@ const FormikLoginForm = withFormik({
 	},
 
 	handleSubmit: (values, { setStatus, resetForm }) => {
+		/*
+			add in a key value to the object
+			uuid, this will generate unique ids atuomatically
+		*/
+		values.id = uuid4()
 
 		axios
 			.post("https://reqres.in/api/users/", values)
 			.then(res => setStatus(res.data))
 			.then(() => { resetForm() })
-		// setStatus(values);
-		// resetForm()
+
 	}
 })(RequestForm);
 
