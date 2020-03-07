@@ -34,9 +34,8 @@ function WelcomePage({ history, setUserLogin }) {
 
 	function handleDelete(id){
 		/*
-		 Filter the array and remove / delete the card 
-		 that has an id that is matching the id passed to
-		 the function
+		 Remove the card that has the same id
+		 as the id that is passed to the function
 		*/
 		
 		const filteredRequests = userRequests.filter(card => card.id !== id )
