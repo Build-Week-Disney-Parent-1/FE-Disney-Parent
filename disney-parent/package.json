@@ -14,11 +14,13 @@
     "local-storage": "^2.0.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-modal": "^3.11.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "react-swipeable-routes": "^0.6.0",
     "styled-components": "^5.0.1",
     "styled-normalize": "^8.0.7",
+    "uuid": "^7.0.2",
     "yup": "^0.28.1"
   },
   "scripts": {
