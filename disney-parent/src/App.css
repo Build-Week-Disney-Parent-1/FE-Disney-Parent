@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Gentium+Basic:400,400i,700&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+html {
+	font-size: 62.5%;
+}
+html,
+body {
+	height: 100%;
+	font-family: ' Gentium Basic';
+}
+
+.App {
+	width: 100%;
+}
