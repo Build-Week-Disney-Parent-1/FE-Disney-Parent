@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { withFormik } from 'formik';
+import axios from 'axios';
 import {
 	RequestFormWrapper,
 	RequestFormElement,
@@ -9,9 +10,11 @@ import {
 	PostButton
 } from './styles';
 
-function RequestForm({ status, request, setRequest }) {
+function RequestForm({ status, request, setRequests, values, userRequests }) {
+	// console.log(values)
+	console.log("STATUS: ", status)
 	useEffect(() => {
-		status && setRequest([...request, status]);
+		status && setRequests([...userRequests, status]);
 	}, [status]);
 
 	return (
@@ -118,8 +121,12 @@ const FormikLoginForm = withFormik({
 
 	handleSubmit: (values, { setStatus, resetForm }) => {
 
-		setStatus(values);
-		resetForm()
+		axios
+			.post("https://reqres.in/api/users/", values)
+			.then(res => setStatus(res.data))
+			.then(() => { resetForm() })
+		// setStatus(values);
+		// resetForm()
 	}
 })(RequestForm);
 

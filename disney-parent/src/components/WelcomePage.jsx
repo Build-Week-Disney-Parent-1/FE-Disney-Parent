@@ -14,21 +14,25 @@ import {
 import { requests } from '../data/requests'
 
 function WelcomePage({ history, setUserLogin }) {
-	const [request, setRequest] = useState([]);
-	const [searchResult, setSearchResult] = useState([]);
-	
-	useEffect(() => {
-		
-		// populate state with some dummy data on inital render
-		setRequest(requests)
-	}, [])
+	// state to track a array of requests
+	const [userRequests, setRequests] = useState([])
 
+	// state for searching / filtering
+	const [searchResult, setSearchResult] = useState([]);
+
+	console.log("REQUESTS: ", requests)
+
+	useEffect(() => {
+		// set userRequests on initial render
+		setRequests(requests)
+	},[])
+	
 	function handleSignout(){
 
 		localStorage.removeItem("user")
 		history.push('/')
 		setUserLogin(localStorage.getItem("user"))
-		
+
 	}
 
 	return (
@@ -44,9 +48,9 @@ function WelcomePage({ history, setUserLogin }) {
 			</header>
 			<main>
 				<SearchForm searchResult={searchResult} setSearchResult={setSearchResult} />
-				<RequestForm request={request} setRequest={setRequest} />
+				<RequestForm  userRequests={userRequests} setRequests={setRequests}/>
 				<RequestCardsWrapper>
-					{request.map(item => {
+					{userRequests.map(item => {
 						return <RequestCard item={item} />;
 					})}
 				</RequestCardsWrapper>

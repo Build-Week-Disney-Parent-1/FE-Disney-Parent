@@ -55,6 +55,7 @@ function RequestCard(props) {
 						: `${props.item.children} children`}
 				</CardItem>
 			</CardContent>
+			
 			<AcceptButton 
 				disabled = {accepted}
 				id = "acceptButton"
